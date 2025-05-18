@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday!</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      font-family: 'Comic Sans MS', cursive;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    #countdown {
+      font-size: 50px;
+      color: #FF1493;
+      margin-top: 100px;
+    }
+
+    #birthdayContent {
+      display: none;
+      padding: 20px;
+      animation: zoomIn 1.5s ease-in-out;
+    }
+
+    h1 {
+      font-size: 70px;
+      color: #FF69B4;
+      margin-top: 40px;
+    }
+
+    .photos {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      margin-top: 40px;
+    }
+
+    .photos img {
+      width: 350px;
+      height: auto;
+      border: 6px solid white;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      transition: transform 0.8s;
+      animation: zoomIn 2s ease;
+    }
+
+    .photos img:hover {
+      transform: scale(1.1);
+    }
+
+    h3 {
+      color: #800080;
+      font-size: 24px;
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(0.6);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Scrolling bottom message bar */
+    .marquee {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #ff69b4;
+      color: white;
+      font-size: 24px;
+      padding: 10px 0;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .marquee span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll 12s linear infinite;
+    }
+
+    @keyframes scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div id="countdown">Loading...</div>
+
+  <div id="birthdayContent">
+    <h1>🎉 Happy Birthday Papa! 🎉</h1>
+    <div class="photos">
+      <div>
+        <h3>Then...</h3>
+        <img src="C:\Users\kks_o\Downloads\baby.jpg" alt="Baby Photo">
+      </div>
+      <div>
+        <h3>Now!</h3>
+        <img src="C:\Users\kks_o\Downloads\recent.jpg" alt="Recent Photo">
+      </div>
+    </div>
+  </div>
+
+  <!-- Marquee message -->
+  <div class="marquee"><span>🎈 Wish you many many happy returns of the day Papa 🎈</span></div>
+
+  <script>
+    const targetDate = new Date("2025-05-18T13:10:00").getTime(); // Change this to your date/time
+
+    const countdownEl = document.getElementById("countdown");
+    const birthdayContent = document.getElementById("birthdayContent");
+
+    const countdown = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance <= 0) {
+        clearInterval(countdown);
+        countdownEl.style.display = "none";
+        birthdayContent.style.display = "block";
+      } else {
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdownEl.innerHTML = `⏳ ${hours}h ${minutes}m ${seconds}s to go!`;
+      }
+    }, 1000);
+  </script>
+
+</body>
+</html>
